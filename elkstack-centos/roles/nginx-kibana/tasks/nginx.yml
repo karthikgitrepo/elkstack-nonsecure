@@ -1,0 +1,20 @@
+- name: Install Nginx repo for CentOS7
+  yum:
+    name={{ nginx_repo7 }}
+    state=installed
+  when: ansible_distribution_major_version == "7"
+
+- name: Install Nginx
+  yum:
+    name={{ item }}
+    state=latest
+  with_items:
+   - nginx
+   - python-passlib
+  notify:
+   - start nginx
+
+- name: Enable nginx service
+  service:
+    name=nginx
+    state=started

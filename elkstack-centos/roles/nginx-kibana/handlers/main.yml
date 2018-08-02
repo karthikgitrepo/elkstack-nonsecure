@@ -1,0 +1,2 @@
+- include: start_nginx.yml
+- include: start_kibana.yml
